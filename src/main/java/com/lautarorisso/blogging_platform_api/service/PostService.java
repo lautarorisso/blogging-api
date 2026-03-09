@@ -14,8 +14,11 @@ import lombok.RequiredArgsConstructor;
 public class PostService {
     private final PostRepository postRepository;
 
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public List<Post> getAllPosts(String term) {
+        if (term == null || term.isBlank()) {
+            return postRepository.findAll();
+        }
+        return postRepository.search(term);
     }
 
     public Post getPostById(Long id) {
