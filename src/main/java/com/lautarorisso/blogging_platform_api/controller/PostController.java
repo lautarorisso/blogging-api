@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lautarorisso.blogging_platform_api.dto.PostRequest;
+import com.lautarorisso.blogging_platform_api.dto.PostResponse;
+import com.lautarorisso.blogging_platform_api.mapper.PostMapper;
 import com.lautarorisso.blogging_platform_api.model.Post;
 import com.lautarorisso.blogging_platform_api.service.PostService;
 
@@ -23,23 +26,28 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    public List<PostResponse> getAllPosts() {
+        return postService.getAllPosts().stream().map(PostMapper::toPostResponse).toList();
     }
 
     @GetMapping("/{id}")
-    public Post getPostById(@PathVariable Long id) {
-        return postService.getPostById(id);
+    public PostResponse getPostById(@PathVariable Long id) {
+        Post post = postService.getPostById(id);
+        return PostMapper.toPostResponse(post);
     }
 
     @PostMapping
-    public Post createPost(@RequestBody Post post) {
-        return postService.createPost(post);
+    public PostResponse createPost(@RequestBody PostRequest request) {
+        Post post = PostMapper.toEntity(request);
+        Post saved = postService.createPost(post);
+        return PostMapper.toPostResponse(saved);
     }
 
     @PutMapping("/{id}")
-    public Post updatePost(@PathVariable Long id, @RequestBody Post updatedPost) {
-        return postService.updatePost(id, updatedPost);
+    public PostResponse updatePost(@PathVariable Long id, @RequestBody PostRequest updatedPost) {
+        Post post = PostMapper.toEntity(updatedPost);
+        Post updated = postService.updatePost(id, post);
+        return PostMapper.toPostResponse(updated);
     }
 
     @DeleteMapping("/{id}")
