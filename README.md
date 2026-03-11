@@ -190,12 +190,12 @@ Run tests with:
 
 src
 └─ main
-└─ java
-├─ controller
-├─ service
-├─ repository
-├─ model
-└─ dto
+  └─ java
+    ├─ controller
+    ├─ service
+    ├─ repository
+    ├─ model
+    └─ dto
 
 #### roadmap.sh
 
