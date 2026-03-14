@@ -15,8 +15,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.lautarorisso.blogging_platform_api.model.Post;
-import com.lautarorisso.blogging_platform_api.model.Tag;
+import com.lautarorisso.blogging_platform_api.model.PostEntity;
+import com.lautarorisso.blogging_platform_api.model.TagEntity;
 import com.lautarorisso.blogging_platform_api.service.PostService;
 
 @WebMvcTest(PostController.class)
@@ -28,11 +28,11 @@ class PostControllerTest {
     @MockitoBean
     private PostService postService;
 
-    private Post createPost(Long id, String title, String content, String category) {
-        Tag tag = new Tag();
+    private PostEntity createPost(Long id, String title, String content, String category) {
+        TagEntity tag = new TagEntity();
         tag.setId(1L);
         tag.setName("java");
-        Post post = new Post();
+        PostEntity post = new PostEntity();
         post.setId(id);
         post.setTitle(title);
         post.setContent(content);
@@ -43,8 +43,8 @@ class PostControllerTest {
 
     @Test
     void getAllPosts_returnsAllPosts_whenNoSearchTerm() throws Exception {
-        Post post1 = createPost(1L, "First Post", "Content 1", "Tech");
-        Post post2 = createPost(2L, "Second Post", "Content 2", "Science");
+        PostEntity post1 = createPost(1L, "First Post", "Content 1", "Tech");
+        PostEntity post2 = createPost(2L, "Second Post", "Content 2", "Science");
         when(postService.getAllPosts(null)).thenReturn(List.of(post1, post2));
 
         mockMvc.perform(get("/posts"))
@@ -56,7 +56,7 @@ class PostControllerTest {
 
     @Test
     void getAllPosts_returnsMatchingPosts_whenSearchTermProvided() throws Exception {
-        Post post = createPost(1L, "Spring Boot Guide", "Learn Spring Boot", "Tech");
+        PostEntity post = createPost(1L, "Spring Boot Guide", "Learn Spring Boot", "Tech");
         when(postService.getAllPosts("spring")).thenReturn(List.of(post));
 
         mockMvc.perform(get("/posts").param("term", "spring"))
