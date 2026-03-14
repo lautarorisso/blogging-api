@@ -20,12 +20,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "tags")
-public class Tag {
+public class TagEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
     @ManyToMany(mappedBy = "tags")
-    private Set<Post> posts;
+    private Set<PostEntity> posts;
 }

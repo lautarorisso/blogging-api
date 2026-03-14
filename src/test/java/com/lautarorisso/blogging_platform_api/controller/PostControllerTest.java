@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -73,6 +74,7 @@ class PostControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     void createPost_returns400_whenTitleIsMissing() throws Exception {
         String json = """
                 {
@@ -82,12 +84,13 @@ class PostControllerTest {
                 """;
 
         mockMvc.perform(post("/posts")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
+    @WithMockUser(roles = "USER")
     void deletePost_returns404_whenPostDoesNotExist() throws Exception {
         when(postService.getPostById(999L)).thenReturn(null);
 

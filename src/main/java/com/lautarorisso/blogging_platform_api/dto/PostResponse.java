@@ -2,7 +2,7 @@ package com.lautarorisso.blogging_platform_api.dto;
 
 import java.util.Set;
 
-import com.lautarorisso.blogging_platform_api.model.User;
+import com.lautarorisso.blogging_platform_api.model.UserEntity;
 
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +14,5 @@ public class PostResponse {
     private String title;
     private String content;
     private Set<String> tags;
-    private User author;
+    private UserEntity author;
 }
