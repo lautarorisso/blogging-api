@@ -2,14 +2,7 @@ package com.lautarorisso.blogging_platform_api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 
-@Data
-public class RegisterRequest {
-    @NotBlank
-    @Size(min = 3, max = 20)
-    private String username;
-    @NotBlank
-    @Size(min = 6)
-    private String password;
+public record RegisterRequest(@NotBlank @Size(min = 3, max = 20) String username,
+        @NotBlank @Size(min = 6, max = 100) String password) {
 }

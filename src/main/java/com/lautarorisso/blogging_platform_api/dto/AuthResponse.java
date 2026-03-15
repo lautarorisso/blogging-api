@@ -1,10 +1,7 @@
 package com.lautarorisso.blogging_platform_api.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@Data
-@AllArgsConstructor
-public class AuthResponse {
-    private String token;
+@JsonPropertyOrder({ "username", "message", "jwt", "status" })
+public record AuthResponse(String jwt, String username, String message, boolean status) {
 }

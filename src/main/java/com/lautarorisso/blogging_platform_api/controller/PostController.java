@@ -58,14 +58,14 @@ public class PostController {
     @PreAuthorize("hasRole('USER') OR hasRole('ADMIN')")
     public ResponseEntity<PostResponse> updatePost(@Valid @PathVariable Long id, @RequestBody PostRequest request,
             Authentication authentication) {
-        PostEntity updated = postService.updatePost(id, request, authentication.getName());
+        PostEntity updated = postService.updatePost(id, request, authentication.getPrincipal().toString());
         return ResponseEntity.ok(PostMapper.toPostResponse(updated));
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('USER') OR hasRole('ADMIN')")
     public ResponseEntity<Void> deletePost(@Valid @PathVariable Long id, Authentication authentication) {
-        postService.deletePost(id, authentication.getName());
+        postService.deletePost(id, authentication.getPrincipal().toString());
         return ResponseEntity.noContent().build();
     }
 }
