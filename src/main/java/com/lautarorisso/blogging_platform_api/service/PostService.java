@@ -1,12 +1,16 @@
 package com.lautarorisso.blogging_platform_api.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.lautarorisso.blogging_platform_api.dto.PageResponse;
 import com.lautarorisso.blogging_platform_api.dto.PostRequest;
+import com.lautarorisso.blogging_platform_api.dto.PostResponse;
+import com.lautarorisso.blogging_platform_api.mapper.PageMapper;
+import com.lautarorisso.blogging_platform_api.mapper.PostMapper;
 import com.lautarorisso.blogging_platform_api.model.PostEntity;
 import com.lautarorisso.blogging_platform_api.model.UserEntity;
 import com.lautarorisso.blogging_platform_api.repository.PostRepository;
@@ -20,12 +24,16 @@ import lombok.RequiredArgsConstructor;
 public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final PageMapper pageMapper;
 
-    public List<PostEntity> getAllPosts(String term) {
+    public PageResponse<PostResponse> getAllPosts(Pageable pageable, String term) {
+        Page<PostEntity> postPage;
         if (term == null || term.isBlank()) {
-            return postRepository.findAll();
+            postPage = postRepository.findAll(pageable);
+        } else {
+            postPage = postRepository.findByTitleContainingIgnoreCase(term, pageable);
         }
-        return postRepository.search(term);
+        return pageMapper.toPageResponse(postPage, PostMapper::toPostResponse);
     }
 
     public PostEntity getPostById(Long id) {

@@ -1,7 +1,7 @@
 package com.lautarorisso.blogging_platform_api.controller;
 
-import java.util.List;
-
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
 
+import com.lautarorisso.blogging_platform_api.dto.PageResponse;
 import com.lautarorisso.blogging_platform_api.dto.PostRequest;
 import com.lautarorisso.blogging_platform_api.dto.PostResponse;
 import com.lautarorisso.blogging_platform_api.mapper.PostMapper;
@@ -35,9 +37,10 @@ public class PostController {
 
     @GetMapping
     @PreAuthorize("permitAll()")
-    public ResponseEntity<List<PostResponse>> getAllPosts(@RequestParam(required = false) String term) {
-        List<PostEntity> posts = postService.getAllPosts(term);
-        return ResponseEntity.ok(posts.stream().map(PostMapper::toPostResponse).toList());
+    public ResponseEntity<PageResponse<PostResponse>> getAllPosts(
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            @RequestParam(required = false) String term) {
+        return ResponseEntity.ok(postService.getAllPosts(pageable, term));
     }
 
     @GetMapping("/{id}")
