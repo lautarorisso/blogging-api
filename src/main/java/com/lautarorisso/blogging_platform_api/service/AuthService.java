@@ -2,8 +2,6 @@ package com.lautarorisso.blogging_platform_api.service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,11 +10,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.lautarorisso.blogging_platform_api.dto.AuthResponse;
 import com.lautarorisso.blogging_platform_api.dto.LoginRequest;
 import com.lautarorisso.blogging_platform_api.dto.RegisterRequest;
+import com.lautarorisso.blogging_platform_api.exception.InvalidCredentialsException;
+import com.lautarorisso.blogging_platform_api.exception.UsernameAlreadyExistsException;
 import com.lautarorisso.blogging_platform_api.model.UserEntity;
 import com.lautarorisso.blogging_platform_api.repository.UserRepository;
 import com.lautarorisso.blogging_platform_api.security.JwtService;
@@ -37,7 +36,7 @@ public class AuthService {
         String username = request.username();
         String password = request.password();
         if (userRepository.existsByUsername(username)) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already exists");
+            throw new UsernameAlreadyExistsException(username);
         }
         UserEntity user = new UserEntity();
         user.setUsername(username);
@@ -66,7 +65,7 @@ public class AuthService {
     public Authentication authenticate(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-            throw new BadCredentialsException("Invalid credentials");
+            throw new InvalidCredentialsException("Invalid username or password");
         }
         return new UsernamePasswordAuthenticationToken(
                 username, userDetails.getPassword(), userDetails.getAuthorities());

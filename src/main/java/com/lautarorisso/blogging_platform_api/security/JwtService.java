@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.lautarorisso.blogging_platform_api.exception.JwtVerificationException;
 
 import java.util.Date;
 import java.util.UUID;
@@ -49,7 +49,7 @@ public class JwtService {
                     .build()
                     .verify(token);
         } catch (Exception e) {
-            throw new JWTVerificationException("Invalid token");
+            throw new JwtVerificationException("Invalid token");
         }
     }
 
