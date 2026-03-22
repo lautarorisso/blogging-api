@@ -23,7 +23,9 @@ import com.lautarorisso.blogging_platform_api.security.Role;
 import com.lautarorisso.blogging_platform_api.security.UserDetailsServiceImpl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -33,6 +35,7 @@ public class AuthService {
     private final UserDetailsServiceImpl userDetailsService;
 
     public AuthResponse register(RegisterRequest request) {
+        log.info("Register attempt for username: {}", request.username());
         String username = request.username();
         String password = request.password();
         if (userRepository.existsByUsername(username)) {
@@ -50,6 +53,7 @@ public class AuthService {
                 user.getPassword(), authorities);
         String accessToken = jwtService.createToken(auth);
 
+        log.info("User registered successfully: {}", username);
         return new AuthResponse(user.getUsername(), "User registered successfully", accessToken, true);
     }
 
@@ -59,10 +63,12 @@ public class AuthService {
         Authentication auth = authenticate(username, password);
         SecurityContextHolder.getContext().setAuthentication(auth);
         String accessToken = jwtService.createToken(auth);
+        log.info("User logged in successfully: {}", username);
         return new AuthResponse(username, "Login successful", accessToken, true);
     }
 
     public Authentication authenticate(String username, String password) {
+        log.info("Login attempt for username: {}", username);
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         if (!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new InvalidCredentialsException("Invalid username or password");

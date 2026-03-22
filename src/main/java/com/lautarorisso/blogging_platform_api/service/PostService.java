@@ -20,7 +20,9 @@ import com.lautarorisso.blogging_platform_api.repository.UserRepository;
 import com.lautarorisso.blogging_platform_api.security.Role;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -44,10 +46,12 @@ public class PostService {
     }
 
     public PostEntity createPost(PostEntity post) {
+        log.info("Creating post with title: {}", post.getTitle());
         return postRepository.save(post);
     }
 
     public PostEntity updatePost(Long id, PostRequest request, String username) {
+        log.info("Updating post with id: {}", id);
         PostEntity post = getPostById(id);
         UserEntity currentUser = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException(username));
@@ -62,6 +66,7 @@ public class PostService {
     }
 
     public void deletePost(Long id, String username) {
+        log.info("Deleting post with id: {}", id);
         PostEntity post = getPostById(id);
         UserEntity currentUser = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundException(username));
