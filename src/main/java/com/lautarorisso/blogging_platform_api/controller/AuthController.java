@@ -13,7 +13,7 @@ import com.lautarorisso.blogging_platform_api.dto.RegisterRequest;
 import com.lautarorisso.blogging_platform_api.security.JwtService;
 import com.lautarorisso.blogging_platform_api.service.AuthService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/auth")
 @PreAuthorize("permitAll()")
 @RequiredArgsConstructor
-@Valid
 public class AuthController {
     public final AuthService authService;
     public final JwtService jwtService;

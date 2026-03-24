@@ -11,7 +11,7 @@ import com.lautarorisso.blogging_platform_api.model.PostEntity;
 
 public interface PostRepository extends JpaRepository<PostEntity, Long> {
     @Query("""
-            SELECT p FROM Post p
+            SELECT p FROM PostEntity p
             WHERE LOWER(p.title) LIKE LOWER(CONCAT('%', :term, '%'))
             OR LOWER(p.content) LIKE LOWER(CONCAT('%', :term, '%'))
             OR LOWER(p.category) LIKE LOWER(CONCAT('%', :term, '%'))
