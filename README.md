@@ -23,13 +23,15 @@ The API allows users to create and manage blog posts while implementing authenti
 
 ## Tech Stack
 
-- **Java**
-- **Spring Boot**
+- **Java 21**
+- **Spring Boot 4**
 - **Spring Security**
 - **Spring Data JPA**
 - **PostgreSQL**
 - **Swagger / OpenAPI**
 - **JUnit / Mockito**
+- **Lombok**
+- **Jakarta Validation**
 
 ---
 
@@ -243,18 +245,32 @@ mvnw.cmd test
 
 #### Project Structure
 
-src
--└ main
---└ java
---├ config
---├ controller
---├ dto
---├ mapper
---├ model
---├ repository
---├ security
---└ service
-
-#### roadmap.sh
-
-https://roadmap.sh/projects/blogging-platform-api
+```
+src/
+├── main/
+│   ├── java/
+│   │   └── com/lautarorisso/blogging_platform_api/
+│   │       ├── BloggingPlatformApiApplication.java
+│   │       ├── config/
+│   │       │   ├── SecurityConfig.java
+│   │       │   └── SwaggerConfig.java
+│   │       ├── controller/
+│   │       │   ├── AuthController.java
+│   │       │   └── PostController.java
+│   │       ├── dto/
+│   │       ├── exception/
+│   │       ├── mapper/
+│   │       ├── model/
+│   │       ├── repository/
+│   │       ├── security/
+│   │       └── service/
+│   └── resources/
+│       ├── application.properties
+│       └── static/
+└── test/
+    ├── java/
+    │   └── com/lautarorisso/blogging_platform_api/
+    │       └── service/
+    └── resources/
+        └── application-test.properties
+```
