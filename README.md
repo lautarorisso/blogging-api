@@ -1,6 +1,6 @@
 # Blogging Platform API
 
-A simple RESTful API for a personal blogging platform built with **Java, Spring Boot, and PostgreSQL**.  
+Robust RESTful API built with **Java, Spring Boot, and PostgreSQL**, featuring JWT authentication, pagination, custom exception handling, and fully documented endpoints using Swagger (OpenAPI), following best practices and layered arquitecture with clear separation of concerns.
 The API allows users to create and manage blog posts while implementing authentication and role-based authorization using **Spring Security**.
 
 ---
