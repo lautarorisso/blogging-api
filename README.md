@@ -9,7 +9,9 @@ The API allows users to create and manage blog posts while implementing authenti
 
 1. Clone the repository
 
-   git clone https://github.com/lautarorisso/blogging-api.git
+```
+ git clone https://github.com/lautarorisso/blogging-api.git
+```
 
 2. Run the application
 
