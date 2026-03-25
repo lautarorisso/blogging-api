@@ -5,7 +5,76 @@ The API allows users to create and manage blog posts while implementing authenti
 
 ---
 
-# Features
+## Quick Start
+
+1. Clone the repository
+
+   git clone https://github.com/lautarorisso/blogging-api.git
+
+2. Run the application
+
+```Linux / macOS
+./mvnw spring-boot:run
+cd blogging-api
+```
+
+```Windows
+mvnw.cmd spring-boot:run
+cd blogging-api
+```
+
+or run the main class from your IDE.
+
+✅ The API will start at:
+http://localhost:8080
+
+---
+
+## API Documentation
+
+Swagger UI is available at:
+
+http://localhost:8080/swagger-ui.html
+
+or
+
+http://localhost:8080/swagger-ui/index.html
+
+---
+
+## Environment Variables (Optional)
+
+The application includes default values, so you can run it without configuration.
+
+If you want to customize settings, you can define environment variables or create a `.env` file based on the provided example:
+
+```bash
+cp .env.example .env
+```
+
+```Windows
+copy .env.example .env
+```
+
+Then edit the values as needed.
+
+| Variable    | Description       | Default                                  |
+| ----------- | ----------------- | ---------------------------------------- |
+| DB_URL      | Database URL      | jdbc:postgresql://localhost:5432/blog_db |
+| DB_USER     | Database username | postgres                                 |
+| DB_PASSWORD | Database password | postgres                                 |
+| JWT_SECRET  | JWT secret key    | my-secret-key                            |
+
+Example (PowerShell):
+
+```Windows
+  $env:DB_PASSWORD="mypassword"
+  mvnw.cmd spring-boot:run
+```
+
+---
+
+## Features
 
 - User registration and login
 - Role-based authorization (USER / ADMIN)
@@ -24,7 +93,7 @@ The API allows users to create and manage blog posts while implementing authenti
 ## Tech Stack
 
 - **Java 21**
-- **Spring Boot 4**
+- **Spring Boot 3**
 - **Spring Security**
 - **Spring Data JPA**
 - **PostgreSQL**
@@ -35,7 +104,7 @@ The API allows users to create and manage blog posts while implementing authenti
 
 ---
 
-# Authentication
+## Authentication
 
 The API uses **Spring Security** with role-based access control.
 
@@ -48,9 +117,11 @@ Some endpoints are public, while others require authentication.
 
 ---
 
-# Auth Endpoints
+## Auth Endpoints
 
-## Register
+---
+
+### Register
 
 POST `/auth/register`
 
@@ -69,7 +140,9 @@ Response:
 
 - 409 CONFLICT - Username already exists
 
-## Login
+---
+
+### Login
 
 POST /auth/login
 
@@ -88,7 +161,11 @@ Response:
 
 - 401 Unauthorized – Invalid credentials
 
+---
+
 ## Blog Post Endpoints
+
+---
 
 ### Create a Blog Post
 
@@ -113,6 +190,8 @@ Response:
 
 - 400 Bad Request
 
+---
+
 ### Update a Blog Post
 
 PUT /posts/{id}
@@ -126,6 +205,8 @@ Response:
 - 403 Forbidden
 
 - 404 Not Found
+
+---
 
 ### Delete a Blog Post
 
@@ -141,6 +222,8 @@ Response:
 
 - 404 Not Found
 
+---
+
 ### Get a Single Blog Post
 
 GET /posts/{id}
@@ -152,6 +235,8 @@ Response:
 - 200 OK
 
 - 404 Not Found
+
+---
 
 ### Get All Blog Posts
 
@@ -193,41 +278,7 @@ This performs a wildcard search on:
 - content
 - category
 
-#### Running the Project
-
-1. Clone the repository
-
-   git clone https://github.com/your-username/blogging-api.git
-
-2. Configure the database
-
-Update application.properties:
-
-spring.datasource.url=jdbc:postgresql://localhost:5432/blog_db
-spring.datasource.username=postgres
-spring.datasource.password=your_password
-
-3. Run the application
-
-```Linux / macOS
-./mvnw spring-boot:run
-```
-
-```Windows
-mvnw.cmd spring-boot:run
-```
-
-or run the main class from your IDE.
-
-#### API Documentation
-
-Swagger UI is available at:
-
-http://localhost:8080/swagger-ui.html
-
-or
-
-http://localhost:8080/swagger-ui/index.html
+---
 
 #### Testing
 
@@ -242,6 +293,8 @@ Run tests with:
 ```Windows
 mvnw.cmd test
 ```
+
+---
 
 #### Project Structure
 
@@ -274,3 +327,5 @@ src/
     └── resources/
         └── application-test.properties
 ```
+
+---

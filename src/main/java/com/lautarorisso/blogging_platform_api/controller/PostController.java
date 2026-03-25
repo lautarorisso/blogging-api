@@ -4,6 +4,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,7 +48,7 @@ public class PostController {
     @GetMapping
     @PreAuthorize("permitAll()")
     public ResponseEntity<PageResponse<PostResponse>> getAllPosts(
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) @NonNull Pageable pageable,
             @RequestParam(required = false) String term) {
         return ResponseEntity.ok(postService.getAllPosts(pageable, term));
     }
@@ -58,7 +59,7 @@ public class PostController {
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     @GetMapping("/{id}")
     @PreAuthorize("permitAll()")
-    public ResponseEntity<PostResponse> getPostById(@PathVariable Long id) {
+    public ResponseEntity<PostResponse> getPostById(@PathVariable @NonNull Long id) {
         PostEntity post = postService.getPostById(id);
         return ResponseEntity.ok(PostMapper.toPostResponse(post));
     }
@@ -85,7 +86,8 @@ public class PostController {
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER') OR hasRole('ADMIN')")
-    public ResponseEntity<PostResponse> updatePost(@Valid @PathVariable Long id, @RequestBody PostRequest request,
+    public ResponseEntity<PostResponse> updatePost(@Valid @PathVariable @NonNull Long id,
+            @RequestBody PostRequest request,
             Authentication authentication) {
         PostEntity updated = postService.updatePost(id, request, authentication.getPrincipal().toString());
         return ResponseEntity.ok(PostMapper.toPostResponse(updated));
@@ -98,7 +100,7 @@ public class PostController {
     @ApiResponse(responseCode = "404", description = "Post not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('USER') OR hasRole('ADMIN')")
-    public ResponseEntity<Void> deletePost(@Valid @PathVariable Long id, Authentication authentication) {
+    public ResponseEntity<Void> deletePost(@Valid @PathVariable @NonNull Long id, Authentication authentication) {
         postService.deletePost(id, authentication.getPrincipal().toString());
         return ResponseEntity.noContent().build();
     }

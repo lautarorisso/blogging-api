@@ -2,7 +2,7 @@ package com.lautarorisso.blogging_platform_api.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.lautarorisso.blogging_platform_api.dto.PageResponse;
@@ -30,7 +30,7 @@ public class PostService {
     private final UserRepository userRepository;
     private final PageMapper pageMapper;
 
-    public PageResponse<PostResponse> getAllPosts(Pageable pageable, String term) {
+    public PageResponse<PostResponse> getAllPosts(@NonNull Pageable pageable, String term) {
         Page<PostEntity> postPage;
         if (term == null || term.isBlank()) {
             postPage = postRepository.findAll(pageable);
@@ -40,7 +40,7 @@ public class PostService {
         return pageMapper.toPageResponse(postPage, PostMapper::toPostResponse);
     }
 
-    public PostEntity getPostById(Long id) {
+    public PostEntity getPostById(@NonNull Long id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
     }
@@ -50,7 +50,7 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public PostEntity updatePost(Long id, PostRequest request, String username) {
+    public PostEntity updatePost(@NonNull Long id, PostRequest request, String username) {
         log.info("Updating post with id: {}", id);
         PostEntity post = getPostById(id);
         UserEntity currentUser = userRepository.findByUsername(username)
@@ -65,7 +65,7 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public void deletePost(Long id, String username) {
+    public void deletePost(@NonNull Long id, String username) {
         log.info("Deleting post with id: {}", id);
         PostEntity post = getPostById(id);
         UserEntity currentUser = userRepository.findByUsername(username)

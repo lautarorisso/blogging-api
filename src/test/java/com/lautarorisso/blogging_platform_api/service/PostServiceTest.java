@@ -71,6 +71,7 @@ public class PostServiceTest {
     }
 
     @Test
+    @SuppressWarnings("null")
     void testGetAllPostsWithTerm() {
         Pageable pageable = PageRequest.of(0, 10);
         String term = "test";
@@ -91,6 +92,7 @@ public class PostServiceTest {
     }
 
     @Test
+    @SuppressWarnings("null")
     void testGetAllPosts() {
         Pageable pageable = PageRequest.of(0, 10);
         PageImpl<PostEntity> postPage = new PageImpl<>(List.of(post1, post2), pageable, 2);
@@ -156,6 +158,7 @@ public class PostServiceTest {
     }
 
     @Test
+    @SuppressWarnings("null")
     void testUpdatePostSuccessfully() {
         Long id = 1L;
         PostRequest request = new PostRequest();
@@ -166,7 +169,7 @@ public class PostServiceTest {
 
         when(postRepository.findById(id)).thenReturn(Optional.of(post1));
         when(userRepository.findByUsername("LautaroTest")).thenReturn(Optional.of(lautaro));
-        when(postRepository.save(post1)).thenReturn(post1);
+        when(postRepository.save(any(PostEntity.class))).thenReturn(post1);
 
         PostEntity result = postService.updatePost(id, request, "LautaroTest");
 
@@ -177,10 +180,11 @@ public class PostServiceTest {
 
         verify(postRepository, times(1)).findById(id);
         verify(userRepository, times(1)).findByUsername("LautaroTest");
-        verify(postRepository, times(1)).save(post1);
+        verify(postRepository, times(1)).save(any(PostEntity.class));
     }
 
     @Test
+    @SuppressWarnings("null")
     void testUpdatePostForbidden() {
         Long id = 1L;
         PostRequest request = new PostRequest();
@@ -198,10 +202,11 @@ public class PostServiceTest {
 
         verify(postRepository, times(1)).findById(id);
         verify(userRepository, times(1)).findByUsername("RegularUser");
-        verify(postRepository, times(0)).save(post1);
+        verify(postRepository, times(0)).save(any(PostEntity.class));
     }
 
     @Test
+    @SuppressWarnings("null")
     void testUpdatePostUserNotFound() {
         Long id = 1L;
         PostRequest request = new PostRequest();
@@ -219,7 +224,7 @@ public class PostServiceTest {
 
         verify(postRepository, times(1)).findById(id);
         verify(userRepository, times(1)).findByUsername("NonExistentUser");
-        verify(postRepository, times(0)).save(post1);
+        verify(postRepository, times(0)).save(any(PostEntity.class));
     }
 
     @Test

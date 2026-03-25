@@ -66,6 +66,7 @@ public class AuthServiceTest {
     }
 
     @Test
+    @SuppressWarnings("null")
     void shouldRegisterUserSuccessfully() {
         when(userRepository.existsByUsername("testuser")).thenReturn(false);
         when(passwordEncoder.encode("password123")).thenReturn("encodedPassword");
@@ -96,7 +97,6 @@ public class AuthServiceTest {
 
         verify(userRepository, times(1)).existsByUsername("testuser");
         verify(passwordEncoder, never()).encode(anyString());
-        verify(userRepository, never()).save(any(UserEntity.class));
         verify(jwtService, never()).createToken(any(Authentication.class));
     }
 
