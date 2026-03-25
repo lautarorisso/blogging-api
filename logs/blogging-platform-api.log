@@ -512,3 +512,59 @@ Caused by: org.postgresql.util.PSQLException: FATAL: la autentificaci�n passwo
 	... 132 common frames omitted
 2026-03-24 15:16:36 [INFO] c.l.b.service.PostService - Creating post with title: New Title
 2026-03-24 15:16:37 [INFO] c.l.b.service.PostService - Deleting post with id: 1
+2026-03-24 20:46:55 [INFO] c.l.b.BloggingPlatformApiApplication - Starting BloggingPlatformApiApplication using Java 21.0.10 with PID 7272 (C:\dev\Spring\blogging-platform-api\target\classes started by lauta in C:\dev\Spring\blogging-platform-api)
+2026-03-24 20:46:55 [DEBUG] c.l.b.BloggingPlatformApiApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2026-03-24 20:46:55 [INFO] c.l.b.BloggingPlatformApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-24 20:47:04 [INFO] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-24 20:47:04 [INFO] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-03-24 20:47:05 [INFO] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-24 20:47:07 [INFO] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-24 20:47:09 [INFO] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-03-24 20:47:10 [INFO] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-24 20:47:11 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-03-24 20:47:11 [INFO] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26d2f323
+2026-03-24 20:47:11 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-03-24 20:47:12 [WARN] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-24 20:47:16 [INFO] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-24 20:47:20 [WARN] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-24 20:47:25 [INFO] c.l.b.BloggingPlatformApiApplication - Started BloggingPlatformApiApplication in 32.039 seconds (process running for 34.976)
+2026-03-24 20:48:17 [INFO] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-24 20:48:21 [INFO] o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 2472 ms
+2026-03-24 20:50:07 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-03-24 20:50:09 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-03-24 20:51:04 [INFO] c.l.b.BloggingPlatformApiApplication - Starting BloggingPlatformApiApplication using Java 21.0.10 with PID 7272 (C:\dev\Spring\blogging-platform-api\target\classes started by lauta in C:\dev\Spring\blogging-platform-api)
+2026-03-24 20:51:04 [DEBUG] c.l.b.BloggingPlatformApiApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2026-03-24 20:51:04 [INFO] c.l.b.BloggingPlatformApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-24 20:51:12 [INFO] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-24 20:51:12 [INFO] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-03-24 20:51:12 [INFO] o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-24 20:51:14 [INFO] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-24 20:51:14 [INFO] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-24 20:51:19 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-03-24 20:51:20 [INFO] com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3d06f902
+2026-03-24 20:51:20 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-03-24 20:51:20 [WARN] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-24 20:51:24 [INFO] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-24 20:51:27 [WARN] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-24 20:51:33 [INFO] c.l.b.BloggingPlatformApiApplication - Started BloggingPlatformApiApplication in 29.846 seconds (process running for 283.375)
+2026-03-24 20:53:38 [INFO] o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-24 20:54:06 [INFO] o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 13863 ms
+2026-03-24 20:54:12 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-03-24 20:54:13 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-03-24 20:55:01 [INFO] c.l.b.BloggingPlatformApiApplication - Starting BloggingPlatformApiApplication using Java 21.0.10 with PID 7272 (C:\dev\Spring\blogging-platform-api\target\classes started by lauta in C:\dev\Spring\blogging-platform-api)
+2026-03-24 20:55:01 [DEBUG] c.l.b.BloggingPlatformApiApplication - Running with Spring Boot v3.3.5, Spring v6.1.14
+2026-03-24 20:55:01 [INFO] c.l.b.BloggingPlatformApiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-03-24 20:55:10 [INFO] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-24 20:55:10 [INFO] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-03-24 20:55:10 [INFO] o.a.c.c.C.[Tomcat-2].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-03-24 20:55:17 [INFO] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-24 20:55:17 [INFO] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-03-24 20:55:17 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2026-03-24 20:55:18 [INFO] com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@5f4ef219
+2026-03-24 20:55:18 [INFO] com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2026-03-24 20:55:19 [WARN] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-24 20:55:22 [INFO] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-24 20:55:29 [WARN] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-24 20:55:39 [INFO] c.l.b.BloggingPlatformApiApplication - Started BloggingPlatformApiApplication in 39.327 seconds (process running for 529.391)
+2026-03-24 20:56:35 [INFO] o.a.c.c.C.[Tomcat-2].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-24 20:56:39 [INFO] o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 996 ms
